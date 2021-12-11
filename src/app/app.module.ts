@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 
+// import { HeroService } from './hero.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +16,9 @@ import { HeroListComponent } from './hero-list/hero-list.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    // HeroService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

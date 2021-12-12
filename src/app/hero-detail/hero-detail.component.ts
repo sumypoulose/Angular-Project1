@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-hero-detail',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroDetailComponent implements OnInit {
 
-  constructor() { }
+  hero :any = {};
+
+  constructor(private heroService: HeroService ) { }
 
   ngOnInit(): void {
+    this.getSelectedHero();
+  }
+
+  getSelectedHero(): void{
+    this.heroService.selectedHeroObs.subscribe(data => {
+      this.hero = data;
+    }); 
+
   }
 
 }

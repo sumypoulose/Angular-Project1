@@ -1,17 +1,34 @@
 import { Injectable } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
+import { BehaviorSubject, delay, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
+  
+  //selectedHero: any;  
+  heroListObs = new BehaviorSubject<any>([]);
+  selectedHeroObs = new BehaviorSubject<any>({});
 
-  constructor() { }
-
-  public getAllHeros(): Observable<any> {  //getallHeros is observing
-    return of(HEROES).pipe(delay(500));
+  constructor() {
+    this.getAllHeroes();
   }
 
+  // public getAllHeros(): Observable<any> {  //getallHeros is observing
+  //   return of(HEROES).pipe(delay(500));
+  // }
+
+  getAllHeroes():void{
+    of(HEROES).pipe(delay(5000)).subscribe(data => {
+      this.heroListObs.next(data.items)
+    });
+  }
+
+  setSelectedHero(data : any){
+    //this.selectedHero = data;
+    //console.log(this.selectedHero);
+    this.selectedHeroObs.next(data);
+  }
 }
 
 const HEROES = {
